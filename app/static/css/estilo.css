@@ -1,0 +1,15 @@
+/* Autor: Milagros L. V. Bustamante Chuquimia (MLVBC) - TEM-742 */
+:root { --vino: #7B1E3A; --vino-oscuro: #5A1429; --tierra: #B5651D; --arena: #F7F3EF; }
+body { background: var(--arena); }
+.cabecera { background: var(--vino); color: #fff; }
+.menu { background: var(--vino-oscuro); }
+.pie { background: var(--vino-oscuro); color: #F4E9E1; }
+.btn-primary { background: var(--vino); border-color: var(--vino); }
+.btn-primary:hover, .btn-primary:focus { background: var(--vino-oscuro); border-color: var(--vino-oscuro); }
+.btn-outline-primary { color: var(--vino); border-color: var(--vino); }
+.btn-outline-primary:hover { background: var(--vino); border-color: var(--vino); color: #fff; }
+a { color: var(--vino); }
+.tarjeta { border-left: 5px solid var(--tierra); }
+.numero { font-size: 2rem; font-weight: 700; color: var(--vino); }
+.table thead { background: #E9DFD8; }
+.form-control:focus, .form-select:focus { border-color: var(--vino); box-shadow: 0 0 0 .2rem rgba(123,30,58,.2); }

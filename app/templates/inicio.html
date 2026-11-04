@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+<h2 class="mb-4">Panel de TechBol</h2>
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="card tarjeta"><div class="card-body">
+            <div class="numero">{{ totales.productos }}</div>
+            <a href="{{ url_for('productos.lista') }}">Productos registrados</a>
+        </div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card tarjeta"><div class="card-body">
+            <div class="numero">{{ totales.clientes }}</div>
+            <a href="{{ url_for('clientes.lista') }}">Clientes registrados</a>
+        </div></div>
+    </div>
+    <div class="col-md-4">
+        <div class="card tarjeta"><div class="card-body">
+            <div class="numero">{{ totales.pedidos }}</div>
+            <a href="{{ url_for('pedidos.lista') }}">Pedidos realizados</a>
+        </div></div>
+    </div>
+</div>
+<p class="text-muted mt-4">Sistema monolítico modular para la gestión de inventario y ventas.</p>
+{% endblock %}
