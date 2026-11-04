@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block titulo %}Pedidos{% endblock %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Pedidos</h2>
+    <a href="{{ url_for('pedidos.nuevo') }}" class="btn btn-primary">Nuevo pedido</a>
+</div>
+
+<form method="GET" class="row g-2 mb-3">
+    <div class="col-md-6">
+        <select name="cliente_id" class="form-select">
+            <option value="">Todos los clientes</option>
+            {% for c in clientes %}
+            <option value="{{ c.id }}" {{ 'selected' if cliente_id == c.id }}>{{ c.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-auto"><button class="btn btn-outline-primary">Filtrar</button></div>
+    <div class="col-auto"><a href="{{ url_for('pedidos.lista') }}" class="btn btn-outline-secondary">Limpiar</a></div>
+</form>
+
+<div class="table-responsive">
+<table class="table table-striped align-middle bg-white">
+    <thead><tr><th>ID</th><th>Fecha</th><th>Cliente</th><th>Producto</th><th>Monto (Bs)</th><th class="text-end">Acciones</th></tr></thead>
+    <tbody>
+    {% for p in pedidos %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.fecha.strftime('%d/%m/%Y %H:%M') }}</td>
+            <td>{{ p.cliente.nombre }}</td>
+            <td>{{ p.producto.nombre }}</td>
+            <td>{{ '%.2f'|format(p.monto) }}</td>
+            <td class="text-end">
+                <a href="{{ url_for('pedidos.editar', id=p.id) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                <form method="POST" action="{{ url_for('pedidos.eliminar', id=p.id) }}" class="d-inline"
+                      onsubmit="return confirm('¿Eliminar el pedido {{ p.id }}?');">
+                    <button class="btn btn-sm btn-outline-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr><td colspan="6" class="text-center text-muted">No se encontraron pedidos.</td></tr>
+    {% endfor %}
+    </tbody>
+    {% if pedidos %}
+    <tfoot><tr><th colspan="4" class="text-end">Total</th><th colspan="2">Bs {{ '%.2f'|format(total) }}</th></tr></tfoot>
+    {% endif %}
+</table>
+</div>
+{% endblock %}
